@@ -2,9 +2,10 @@
 FROM node:12.15.0-alpine as build-step
 
 WORKDIR /app
+COPY package.json ./
+RUN npm i 
 COPY . .
 EXPOSE 3000
-RUN npm i 
 CMD node -v && npm run dev
 
 # CREATE THE DOCKER IMAGE
@@ -21,7 +22,10 @@ CMD node -v && npm run dev
 #  docker stop 43bd45cff18f<CONTAINER_ID>
 
 # RUN THE CONTAINER <IMAGE/REPOSITORY>
-# docker run -p 0.0.0.0:5000:3000 nextjs
+# docker run -p 0.0.0.0:8000:3000 nextjs
 
 
-# docker build -t client . && docker run --name CLIENT_CONTAINER -p 0.0.0.0:5000:3000 client
+# docker build -t client . && docker run --name CLIENT_CONTAINER -p 0.0.0.0:8000:3000 client
+
+
+# docker-compose up
